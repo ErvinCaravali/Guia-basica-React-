@@ -65,7 +65,7 @@ Ejecuta el siguiente comando para instalar React, React-DOM y React Scripts:
 
 ```bash
 npm install react react-dom react-scripts
-   
+                                    ```
         
                                        
 - **Experience.jsx:** Crear un componente de función llamado `Experience.jsx` en la carpeta `src`, que será el controlador principal encargado de la creación del entorno virtual 3D y el inicio del juego. El componente puede verse así:
