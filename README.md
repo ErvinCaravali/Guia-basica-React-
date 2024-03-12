@@ -4,7 +4,7 @@
 2. [Estructura de archivos](#estructura-de-archivos)
 3. [Instalación de dependencias de React](#instalación-de-dependencias-de-react)
 4. [Ejecutar la aplicación](#ejecutar-la-aplicación)
-5. [Creación del componente Experience](#creación-del-componente-experience)
+5. [Creación del componente Experience](#Experience.jsx)
 6. [Uso de Props](#uso-de-props)
 7. [Destructuring](#destructuring)
 8. [CSS](#css)
