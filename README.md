@@ -68,7 +68,9 @@
         root.render(
           <h1>Hola, mundo!</h1>
         );
-        ```
+        
+
+        
 #creación-del-componente-experience
                                        
 - **Experience.jsx:** Crear un componente de función llamado `Experience.jsx` en la carpeta `src`, que será el controlador principal encargado de la creación del entorno virtual 3D y el inicio del juego. El componente puede verse así:
