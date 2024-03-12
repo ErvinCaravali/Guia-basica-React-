@@ -171,6 +171,8 @@
       );
     };
     ```
+    export { Experience };
+    ```
 ## Instalación de dependencias de React
 
 Ejecuta el siguiente comando para instalar React, React-DOM y React Scripts:
@@ -178,8 +180,7 @@ Ejecuta el siguiente comando para instalar React, React-DOM y React Scripts:
 ```bash
 npm install react react-dom react-scripts
 
-    export { Experience };
-    ```
+   
 
 
 
