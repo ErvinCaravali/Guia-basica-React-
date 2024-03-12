@@ -92,11 +92,11 @@ npm install react react-dom react-scripts
     ```jsx
     import React from 'react';
 
-    const Experience = ({ title, subtitle }) => {
+    const Experience = (Props) => {
       return (
         <>
-          <h1>{title}</h1>
-          <h1>{subtitle}</h1>
+          <h1>{Props.title}</h1>
+          <h1>{Props.subtitle}</h1>
         </>
       );
     };
