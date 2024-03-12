@@ -70,7 +70,7 @@ npm install react react-dom react-scripts
                                        
 - **Experience.jsx:** Crear un componente de función llamado `Experience.jsx` en la carpeta `src`, que será el controlador principal encargado de la creación del entorno virtual 3D y el inicio del juego. El componente puede verse así:
 
-        ```jsx
+```jsx
         import React from 'react';
 
         const Experience = () => {
@@ -168,7 +168,6 @@ npm install react react-dom react-scripts
         </>
       );
     };
-    ```
     export { Experience };
     ```
 
