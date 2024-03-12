@@ -1,25 +1,3 @@
-# Índice
-
-# Índice
-
-1. [Instalación de dependencias](#instalación-de-dependencias)
-    1.1. [Inicializar el proyecto](#inicializar-el-proyecto)
-    1.2. [Configurar script de desarrollo](#configurar-script-de-desarrollo)
-
-2. [Estructura de archivos](#estructura-de-archivos)
-    2.1. [Crear carpeta `public`](#crear-carpeta-public)
-        2.1.1. [index.html](#indexhtml)
-    2.2. [Crear carpeta `src`](#crear-carpeta-src)
-        2.2.1. [index.js](#indexjs)
-        2.2.2. [Experience.jsx](#experiencejsx)
-
-3. [Uso de Props](#uso-de-props)
-    3.1. [Crear Props](#crear-props)
-
-4. [Destructuring](#destructuring)
-
-5. [CSS](#css)
-    5.1. [styles.css](#stylescss)
 
 # Configuración de proyecto React
 
