@@ -1,177 +1,166 @@
 
-# Configuración de proyecto React
+REACT-THREE-FIBER: Es un renderizador de react para Three.js, este contiene  un gran ecosistema de funcionalidades como convertir modelos 3D .gLTF en componentes de .jsx.
 
-## Instalación de dependencias
+ 
+ Camaras: 
+   camara primera persona: no te vez en cuerpo completo, vez al  rededor en una vista sercana los 180 grados.(como jegos de disparos).
+   camara de vista cenital: la camara se ubica desde arriba  de tal forma que  se ve al personaje y todo a su alrededor, se ve la cabeza del  personaje.
+   camara lateral 2d: la que permite visualizar al personajes como si  estuviera a t lado, (como mario bros).
+    
+   camara en tersera persona(la que programaremos en  el projecto): Esta camara se coloca por detras del personaje y lo mantienen siempre dentro del encuadre (la camaera camina con  usted pero por detras).
+   
+   La camara Frustum: lo que la camara toma se renderiza lo  que no se toma, pues no se renderiza.
+   near clip plane:que tan cerca la camara podra renderizar.
+   far clip plane:que tan lejos la camara podra renderizar.
+   fov: es el angulo de vicion.(en el projecto sera de 60 gasos)
+   
+   
+proyeccion de la camara
+   
+  *(importante para el projecto) Perspectiva: los objectoles lejanos los vemos pequeños y objetos cernanos los vemos grandes relativamente.lo que toma la camara sera un rectangulo que se movera 
+   
+   Ortografica: los bojectos se veran igual inependientemente de su lejania o cercania. 
+   
+   Isometrica: es una vicion desde  las cooordenadas x,y,z  
+   
+Escena: es donde ocurre la accion de un juego y donde se colocan y organizan todos los elementos como modelos 3D,personajes, efectos visuales,luces ,camaras , etc.
 
-1. **Inicializar el proyecto:**  
-   Para crear un archivo `package.json` con los metadatos descriptivos y funcionales del proyecto, ejecuta el siguiente comando en tu terminal:
+en una escena nececitamos:
+1 camara
+2 mesh o cuerpo(maya poligonal triangular) necescita un material
+3 luz 
 
-    ```bash
-    npm init -y
-    ```
 
-2. **Configurar script de desarrollo:**  
-   En el archivo `package.json`, agrega el siguiente script bajo la clave `"scripts"` para iniciar el servidor de desarrollo:
+Me quede en 2:49:04 horas. 
 
-    ```json
-    "scripts": {
-      "dev": "react-scripts start"
-    }
-    ```
 
-    Este script nos permite iniciar el servidor de desarrollo con el comando `npm run dev`.
+CREAR NUESTRA PRIMERA ESCENA EN REACT THREE FIBER
 
-## Estructura de archivos
+1. npm install three @types/three @react-three/fiber: instalamos las dependiencias de three.js y de R3F.
+2.para hacer  una escena con los elementos, esta necesita un canvas. En html existe un elemento llamado canvas en el que se  puede colocar:elementos 3D etc.
+  creo atributo canvas  en  el index.js : 
 
-1. **Crear carpeta `public`:**  
-   En esta carpeta se alojan todos los archivos estáticos esenciales, como imágenes, modelos tridimensionales, archivos de video y páginas web.
+import { createRoot } from 'react-dom/client';
+import { Experience } from './ Experience.jsx';
+import './styles.css'
+import { Canvas } from '@react-three/fiber';
+const root = createRoot(document.getElementById('root'));
 
-    - **index.html:** Dentro de la carpeta `public`, crea un archivo `index.html` con la estructura básica de HTML5:
+const ContainerRoot = () => (
+    <Canvas>
+    <Experience />
+    </Canvas>
+    
+);
 
-        ```html
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Título de tu página</title>
-        </head>
-        <body>
-            <div id="root"></div>
-        </body>
-        </html>
-        ```
+root.render(<ContainerRoot />);
+Nota. los elementos 2D se implementan fuera del canvas
 
-        El elemento `<div id="root"></div>` será el punto de montaje de la aplicación React.
+CREAR mesh: el mesh se crea dentro del return de Experience,el cual sera un box y tendra un material llamado meshBasicMaterial que no necesita de luz para ser visto.
 
-2. **Crear carpeta `src`:**  
-   Este directorio contiene el código fuente de la aplicación.
-
-    - **index.js:** Dentro de la carpeta `src`, crea un archivo `index.js`, que será el punto de entrada de la aplicación:
-
-        ```javascript
-        import { createRoot } from "react-dom/client";
-        import React from "react";
-
-        const root = createRoot(document.getElementById('root'));
-
-        root.render(
-          <h1>Hola, mundo!</h1>
-        );
-        ```
-## Instalación de dependencias de React
-
-Ejecuta el siguiente comando para instalar React, React-DOM y React Scripts:
-
-```bash
-npm install react react-dom react-scripts
-```                                 
-
-                                       
-- **Experience.jsx:** Crear un componente de función llamado `Experience.jsx` en la carpeta `src`, que será el controlador principal encargado de la creación del entorno virtual 3D y el inicio del juego. El componente puede verse así:
-
-  ```jsx
-        import React from 'react';
-
-        const Experience = () => {
-          return (
-            <>
-              <h1>squid-games</h1>
-              <h1>ervin</h1>
-            </>
-          );
-        };
-
-        export { Experience };
-        ```
-
-## Uso de Props
-
-3. **Crear Props:** Las funciones componentes pueden recibir props, que son como mensajes que un componente puede recibir de otro componente. En `Experience.jsx`, vamos a usar props para el título y el subtítulo:
-
-    ```jsx
-    import React from 'react';
-
-    const Experience = (Props) => {
-      return (
-        <>
-          <h1>{Props.title}</h1>
-          <h1>{Props.subtitle}</h1>
-        </>
-      );
-    };
-
-    export { Experience };
-    ```
-
-    Y en `index.js`, podemos pasar estas props al componente `Experience`:
-
-    ```javascript
-    import { createRoot } from 'react-dom';
-    import { Experience } from './Experience.jsx';
-
-    const root = createRoot(document.getElementById('root'));
-
-    const ContainerRoot = () => (
-        <Experience 
-          title="squid-games"
-          subtitle="Ervin"
-        />
+const Experience = () => {
+    return (
+     <mesh>
+      <boxGeometry args={[1,1,1]}/> son las dimeciones o volumen del objeto
+      <meshBasicMaterial color="purple"/>
+     </mesh>
     );
+      
+   };
+   export { Experience };
 
-    root.render(<ContainerRoot />);
-    ```
+se  configura el archivo styles.css para visualiza a nuestro grusto la fiura geometrica.
+html,
 
-## Destructuring
+body,
 
-4. **Destructuring:** Podemos utilizar destructuring en los props para simplificar el acceso a sus valores en `Experience.jsx`:
+#root{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
 
-    ```jsx
-    import React from 'react';
+}
 
-    const Experience = ({ title, subtitle }) => {
-      return (
-        <>
-          <h1>{title}</h1>
-          <h1>{subtitle}</h1>
-        </>
-      );
-    };
+canvas{
+    touch-action: none;
+}
 
-    export { Experience };
-    ```
+VISUALIZAR FIGURA COMO 3D: Drento del canvas de index.js ponemos un atribuo camera y lo configuramos.
+import { createRoot } from 'react-dom/client';
+import { Experience } from './ Experience.jsx';
+import './styles.css'
+import { Canvas } from '@react-three/fiber';
+const root = createRoot(document.getElementById('root'));
 
-    Y la importación en `index.js` se mantiene igual.
+const ContainerRoot = () => (
+    <Canvas
+     camera={
+        {
+            position:[2,0,5 ] 2.profundidad ;0.arriba o abajo;
+        }
+     }
+    >
 
-## CSS
+    <Experience />
+    </Canvas>
+    
+);
 
-5. **CSS:** Podemos crear estilos visuales utilizando hojas de estilo CSS. Crea un archivo llamado `styles.css` en la carpeta `css`, y luego impórtalo en `index.js`:
+root.render(<ContainerRoot />);
 
-    ```css
-    /* styles.css */
-    .title {
-      color: blue;
-    }
-    ```
+SE LE  AGREGA AL MESH UNA FUENTE DE LUZ :  <ambientLight />
+      <directionalLight position={[10,10,5]} />
+      
+      
+ USO DE DREI
+ uno de los ecoisitemas de R3F ,este contiene una grna variadad de helper  como <Helper/> hook useHook(), de los cuales encontraremos su documentacion oficial:
+ https://github.com/pmndrs/drei   
+ 
+ Instalar dependencias de drei:
+ npm install @react-three/drei
+ 
+importmos la funcion OrbitControls de drei en Experience.jsx : import { OrbitControls } from "@react-three/drei";
 
-    Luego, aplica estos estilos en `Experience.jsx`:
+import { OrbitControls } from "@react-three/drei";
+const Experience = () => {
+    return (
 
-    ```jsx
-    import React from 'react';
-    import './styles.css';
-
-    const Experience = ({ title, subtitle }) => {
-      return (
-        <>
-          <h1 className="title">{title}</h1>
-          <h1>{subtitle}</h1>
-        </>
-      );
-    };
-    export { Experience };
-    ```
-
-
-
-
-
+     <>
+      <ambientLight />
+      <directionalLight position={[10,10,5]} />
+      <OrbitControls makeDefault/>
+       <mesh>
+         <boxGeometry args={[1,1,1]}/>
+         <meshStandardMaterial color="purple"/>
+       </mesh>
+      
+      </>
+     
+    );
+      aplicamos una referencia al canvas:
+      import { OrbitControls } from "@react-three/drei";
+import { useRef } from "react";
+const Experience = () => {
+  const boxRef= useRef(null);
+    return (
+    
+     <>
+      <ambientLight />
+      <directionalLight position={[10,10,5]} />
+      <OrbitControls makeDefault/>
+       <mesh ref={boxRef}>
+         <boxGeometry args={[1,1,1]}/>
+         <meshStandardMaterial color="purple"/>
+       </mesh>
+      
+      </>
+     
+    );
+      
+   };
+   export { Experience };
+   
+   
